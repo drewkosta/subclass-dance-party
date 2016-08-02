@@ -1,6 +1,5 @@
 var makeTrumpGif = function(top, left, timeBetweenSteps) {
-  this.trumps = ['trump-mouth', 'trump-shit', 'trump-shades', 'trump-mario'];
-  this.attacks = ['trump-mouth', 'trump-shit', 'trump-shades', 'trump-mario'];
+  this.trumps = ['trump-mouth', 'trump-crop', 'trump-shit', 'trump-shades', 'trump-mario'];
   makeDancer.call(this, top, left, timeBetweenSteps);
 };
 
@@ -34,25 +33,30 @@ makeTrumpGif.prototype.attack = function () {
     left: $(this)[0].offsetLeft,
     top: $(this)[0].offsetTop
   };
-
+  var attacks = ['pow.png', 'bam.png'];
   var $hillaries = $('.hillary');
-  console.log($hillaries);
-  var shortestDistance, $closestHillary;
+  var longestDistance, furthestHillary;
   $hillaries.each(function(index) {
     var hilOffset = $(this).offset();
-    // console.log(shortestDistance);
     var left = hilOffset.left;
     var top = hilOffset.top;
     var distance = Math.sqrt(Math.pow((left - trumpGif.left), 2) + Math.pow((top - trumpGif.top), 2));
-    if (shortestDistance === undefined || distance < shortestDistance) {
-      shortestDistance = distance;
-      closestHillary = {left: left, top: top};
+    if (longestDistance === undefined || distance > longestDistance) {
+      longestDistance = distance;
+      furthestHillary = {left: left, top: top};
     }
   });
-  $(this).animate(closestHillary, function () {
-    $(this).animate(trumpGif);
-  });
-  console.log(shortestDistance, $closestHillary);
-  
+  $(this).animate(furthestHillary, function () {
+    var stored = $(this).html();
+    $(this).css('height', '0px');
+    var random = Math.random();
+    var randomSelected = attacks[Math.floor(random * attacks.length)];
+    var htmlString = '<div><img class="trumpattack" src="src/assets/' + randomSelected + '"><audio autoplay src="src/assets/smack.mp3></audio></div>';  
+    $(this).html(htmlString);
 
+    $(this).animate({height: "300px"}, 'slow', function () {
+      $(this).html(stored); 
+      $(this).animate(trumpGif);
+    });
+  });  
 };
