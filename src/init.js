@@ -23,9 +23,21 @@ $(document).ready(function() {
     var dancer = new dancerMakerFunction(
       $("body").height() * Math.random(),
       $("body").width() * Math.random(),
-      Math.random() * 1000
+      Math.random() * 3000
     );
     $('body').append(dancer.$node);
   });
 });
 
+function lineUp () {
+  console.log(':)');  
+  var styleSettings = {
+    top: '500px',
+  };
+  $('img').each(function() {
+    $(this).offset({top: 500});
+    // console.log($(this));
+    // $(this).setPosition(100);
+    // $(this).css('top', '500px');
+  });
+}
