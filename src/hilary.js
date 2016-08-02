@@ -23,7 +23,6 @@ makeHilaryGif.prototype.setPosition = function (top, left) {
   var random = Math.random();
   var randomNumber = Math.floor(random * this.gifs.length);
   var selectedHilary = this.gifs[randomNumber];
-  var imgTag = '<img class="trump" src="src/assets/' + selectedHilary + '.gif" />';
+  var imgTag = '<img class="hillary" src="src/assets/' + selectedHilary + '.gif" />';
   this.$node.html(imgTag);
-}; 
-
+};

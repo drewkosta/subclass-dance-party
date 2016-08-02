@@ -30,14 +30,18 @@ $(document).ready(function() {
 });
 
 function lineUp () {
-  console.log(':)');  
+  console.log(':)');
   var styleSettings = {
     top: '500px',
   };
   $('img').each(function() {
-    $(this).offset({top: 500});
+    $(this).offset({top: 200});
     // console.log($(this));
     // $(this).setPosition(100);
     // $(this).css('top', '500px');
   });
+}
+
+function attack () {
+  $('img')
 }

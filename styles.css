@@ -3,7 +3,8 @@ body, html{
 }
 body{
   margin: 0px;
-  background-color:#444;
+  background-image: url("http://static.politico.com/2d/e8/1076edab470f9707a8f87ae11614/emptydebatestage.jpg");
+  background-size: cover;
   font-size: 18px;
 }
 body, a:link, a:visited, a:active{
