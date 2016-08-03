@@ -21,8 +21,8 @@ $(document).ready(function() {
     // make a dancer with a random position
 
     var dancer = new dancerMakerFunction(
-      $("body").height() * Math.random() * .75,
-      $("body").width() * Math.random() * .75,
+      $(window).height() * Math.random() * .7 + 75, 
+      $(window).width() * Math.random() * .7,
       Math.random() * 3000
     );
     $('body').append(dancer.$node);
@@ -35,13 +35,14 @@ function lineUp () {
     top: '500px',
   };
   $('img').each(function() {
-    $(this).offset({top: 200});
+    $(this).offset({top: 500});
     // console.log($(this));
     // $(this).setPosition(100);
     // $(this).css('top', '500px');
   });
 }
 
-function attack () {
-  $('img')
+function removeDancers () {
+  console.log('listening, ', $('img'));
+  $('.dancer').remove();
 }

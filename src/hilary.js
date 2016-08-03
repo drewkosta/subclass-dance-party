@@ -1,5 +1,5 @@
 var makeHilaryGif = function(top, left, timeBetweenSteps) {
-  this.gifs = ['hilary-scary', 'hillary_bat'];
+  this.gifs = ['hilary-scary', 'hillary_bat', 'hillary-podium', 'hillary-yellow'];
   makeDancer.call(this, top, left, timeBetweenSteps);
 };
 
@@ -10,10 +10,14 @@ makeHilaryGif.prototype.step = function() {
   makeDancer.prototype.step.call(this);
   var random = Math.random();
   var distance = Math.floor(random * 150);
+  var origin = {
+    left: this.left,
+    top: this.top,
+  };
   var addString = '+=' + distance;
   var subtractString = '-=' + distance;
   this.$node.animate({top: subtractString}, function () {
-    this.$node.animate({top: addString});
+    this.$node.animate(origin);
   }.bind(this));
 };
 
@@ -49,10 +53,12 @@ makeHilaryGif.prototype.attack = function () {
   $(this).animate(furthestHillary, function () {
     var stored = $(this).html();
     $(this).css('height', '0px');
+
     var random = Math.random();
     var randomSelected = attacks[Math.floor(random * attacks.length)];
     var htmlString = '<img class="hilattack" src="src/assets/' + randomSelected + '">';  
     $(this).html(htmlString);
+    $('#smack')[0].play();
     $(this).animate({height: "300px"}, 'slow', function () {
       $(this).html(stored); 
       $(this).animate(trumpGif);

@@ -1,5 +1,5 @@
 var makeTrumpGif = function(top, left, timeBetweenSteps) {
-  this.trumps = ['trump-mouth', 'trump-crop', 'trump-shit', 'trump-shades', 'trump-mario'];
+  this.trumps = ['trump-mouth', 'trump-trumpet', 'trump-crop', 'trump-shit', 'trump-shades', 'trump-mario'];
   makeDancer.call(this, top, left, timeBetweenSteps);
 };
 
@@ -9,11 +9,15 @@ makeTrumpGif.prototype.constructor = makeTrumpGif;
 makeTrumpGif.prototype.step = function() {
   makeDancer.prototype.step.call(this);
   var random = Math.random();
-  var distance = Math.floor(random * 500);
+  var distance = Math.floor(random * 150);
+  var origin = {
+    left: this.left,
+    top: this.top, 
+  };
   var addString = '+=' + distance;
   var subtractString = '-=' + distance;
   this.$node.animate({left: addString}, function () {
-    this.$node.animate({left: subtractString});
+    this.$node.animate(origin);
   }.bind(this));
 };
 
@@ -51,9 +55,9 @@ makeTrumpGif.prototype.attack = function () {
     $(this).css('height', '0px');
     var random = Math.random();
     var randomSelected = attacks[Math.floor(random * attacks.length)];
-    var htmlString = '<div><img class="trumpattack" src="src/assets/' + randomSelected + '"><audio autoplay src="src/assets/smack.mp3></audio></div>';  
+    var htmlString = '<img class="trumpattack" src="src/assets/' + randomSelected + '">';  
     $(this).html(htmlString);
-
+    $('#smack')[0].play();
     $(this).animate({height: "300px"}, 'slow', function () {
       $(this).html(stored); 
       $(this).animate(trumpGif);
